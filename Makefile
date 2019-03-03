@@ -1,3 +1,4 @@
+PREFIX = /usr/local
 OBJS = src/kjv_main.o \
        src/kjv_match.o \
        src/kjv_ref.o \
@@ -28,6 +29,15 @@ data/kjv_data.o: src/kjv_data.h data/kjv_data.c
 data/kjv_data.c: data/kjv.tsv data/generate.awk src/kjv_data.h
 	awk -f data/generate.awk $< > $@
 
-.PHONY: clean
 clean:
 	rm -rf $(OBJS) kjv
+
+install: kjv
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	cp -f kjv $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/kjv
+
+uninstall:
+	rm -f $(DESTDIR)$(PREFIX)/bin/kjv
+
+.PHONY: clean install uninstall
