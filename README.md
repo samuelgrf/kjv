@@ -4,6 +4,8 @@
 
 Read the Word of God from your terminal
 
+Forked from <https://github.com/bontibon/kjv>, with additional patches from <https://github.com/lukesmithxyz/kjv> adding the Apocrypha and extending the Makefile.
+
 ## Usage
 
     usage: kjv [flags] [reference...]
